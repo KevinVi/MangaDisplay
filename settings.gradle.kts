@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -21,4 +22,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "MangaDisplay"
 include(":app")
- 
+include(":feature:popular")
+include(":core:data")
+include(":core:ui")
+include(":core:common")
