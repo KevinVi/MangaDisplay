@@ -4,7 +4,6 @@ import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 
 internal fun Project.configureAndroidCompose(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
@@ -23,14 +22,10 @@ internal fun Project.configureAndroidCompose(
             add("implementation", libs.findLibrary("androidx-compose-material-icon-core").get())
             add("implementation", libs.findLibrary("androidx-compose-material-icon-extended").get())
 
-            add("implementation", libs.findLibrary("androidx-compose-animation-core-android").get())
 
             add("debugImplementation", libs.findLibrary("androidx-compose-ui-test-manifest").get())
             add("debugImplementation", libs.findLibrary("androidx-compose-ui-tooling").get())
         }
     }
 
-    extensions.configure<ComposeCompilerGradlePluginExtension> {
-        enableStrongSkippingMode.set(true)
-    }
 }
