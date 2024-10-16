@@ -1,4 +1,4 @@
-package fr.npo.remotecontrolbluetooth.plugins
+package com.kevinvi.mangadisplay.template.plugins
 
 object PluginSdkVersion {
     const val TARGET_SDK = 35

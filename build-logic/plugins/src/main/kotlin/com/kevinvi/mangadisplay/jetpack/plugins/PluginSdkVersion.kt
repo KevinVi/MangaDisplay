@@ -1,4 +1,4 @@
-package fr.npo.jetpack.plugins
+package com.kevinvi.mangadisplay.jetpack.plugins
 
 object PluginSdkVersion {
     const val TARGET_SDK = 35

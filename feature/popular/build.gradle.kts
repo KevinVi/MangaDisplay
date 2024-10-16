@@ -1,10 +1,13 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.mangadisplay.android.feature)
+    alias(libs.plugins.mangadisplay.android.feature.compose)
+    alias(libs.plugins.mangadisplay.android.hilt)
+
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.kevinvi.popular"
+    namespace = "com.kevinvi.mangadisplay.feature.popular"
     compileSdk = 34
 
     defaultConfig {
@@ -33,11 +36,12 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    // Core
+    implementation(project(":core:common"))
+    implementation(project(":core:ui"))
+
+    // Tests
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.junit)
 }

@@ -1,4 +1,4 @@
-package fr.npo.jetpack.plugins
+package com.kevinvi.mangadisplay.jetpack.plugins
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog

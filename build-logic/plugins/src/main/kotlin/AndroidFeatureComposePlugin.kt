@@ -1,6 +1,6 @@
 import com.android.build.api.dsl.LibraryExtension
-import com.kevinvi.doraibu.plugins.configureAndroidCompose
-import com.kevinvi.doraibu.plugins.libs
+import com.kevinvi.mangadisplay.jetpack.plugins.configureAndroidCompose
+import com.kevinvi.mangadisplay.jetpack.plugins.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

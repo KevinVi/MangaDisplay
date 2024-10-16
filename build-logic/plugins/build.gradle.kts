@@ -19,6 +19,7 @@ tasks.withType<KotlinCompile>().configureEach {
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.kotlin.compose.compiler.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
 }
 
@@ -39,10 +40,6 @@ gradlePlugin {
             id = "mangadisplay.android.application.compose"
             implementationClass = "AndroidApplicationComposePlugin"
         }
-        register("androidApplicationFirebase") {
-            id = "mangadisplay.android.application.firebase"
-            implementationClass = "AndroidApplicationFirebasePlugin"
-        }
         register("androidFeature") {
             id = "mangadisplay.android.feature"
             implementationClass = "AndroidFeaturePlugin"
@@ -62,10 +59,6 @@ gradlePlugin {
         register("androidLibraryCompose") {
             id = "mangadisplay.android.library.compose"
             implementationClass = "AndroidLibraryComposePlugin"
-        }
-        register("androidXRoom") {
-            id = "mangadisplay.androidx.room"
-            implementationClass = "AndroidRoomPlugin"
         }
     }
 }

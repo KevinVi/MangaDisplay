@@ -1,6 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.mangadisplay.android.application)
+    alias(libs.plugins.mangadisplay.android.application.compose)
+    alias(libs.plugins.mangadisplay.android.hilt)
 }
 
 android {
@@ -43,4 +44,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
+    // Core
+    implementation(project(":core:common"))
+    implementation(project(":core:ui"))
+
+    // Feature
+    implementation(project(":feature:popular"))
 }

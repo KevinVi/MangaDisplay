@@ -1,4 +1,4 @@
-package fr.npo.remotecontrolbluetooth.plugins
+package com.kevinvi.mangadisplay.template.plugins
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog

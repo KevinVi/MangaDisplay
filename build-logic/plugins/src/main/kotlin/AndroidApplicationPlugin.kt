@@ -1,8 +1,8 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.kevinvi.doraibu.plugins.PluginSdkVersion
-import com.kevinvi.doraibu.plugins.configureAndroidXLifecycle
-import com.kevinvi.doraibu.plugins.configureAndroidXNavigation
-import com.kevinvi.doraibu.plugins.configureKotlinAndroid
+import com.kevinvi.mangadisplay.jetpack.plugins.PluginSdkVersion
+import com.kevinvi.mangadisplay.jetpack.plugins.configureAndroidXLifecycle
+import com.kevinvi.mangadisplay.jetpack.plugins.configureAndroidXNavigation
+import com.kevinvi.mangadisplay.jetpack.plugins.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

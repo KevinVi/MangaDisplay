@@ -1,10 +1,11 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.mangadisplay.android.library)
+    alias(libs.plugins.mangadisplay.android.library.compose)
+    alias(libs.plugins.mangadisplay.android.hilt)
 }
 
 android {
-    namespace = "com.kevinvi.data"
+    namespace = "com.kevinv.mangadisplay.core.data"
     compileSdk = 34
 
     defaultConfig {
@@ -34,10 +35,9 @@ android {
 
 dependencies {
 
+    // AndroidX Core
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    // Tests
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.junit)
 }

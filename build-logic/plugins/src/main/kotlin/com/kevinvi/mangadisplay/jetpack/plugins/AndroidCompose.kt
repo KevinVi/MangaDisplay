@@ -1,4 +1,4 @@
-package fr.npo.jetpack.plugins
+package com.kevinvi.mangadisplay.jetpack.plugins
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
@@ -15,12 +15,6 @@ internal fun Project.configureAndroidCompose(
         }
 
         dependencies {
-            // TODO Use this with bom instead of manual setup
-            //val bom = libs.findLibrary("androidx-compose-bom").get()
-            //add("implementation", platform(bom))
-            //add("androidTestImplementation", platform(bom))
-
-            // Temporary manual setup to replace with bom
             add("implementation", libs.findLibrary("androidx-activity-compose").get())
 
             add("implementation", libs.findLibrary("androidx-compose-ui").get())

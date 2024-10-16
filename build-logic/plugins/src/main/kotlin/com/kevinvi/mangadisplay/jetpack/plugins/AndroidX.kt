@@ -1,4 +1,4 @@
-package fr.npo.jetpack.plugins
+package com.kevinvi.mangadisplay.jetpack.plugins
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
