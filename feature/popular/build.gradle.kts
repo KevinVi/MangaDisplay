@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.mangadisplay.android.hilt)
 
     id("kotlin-parcelize")
+
+    kotlin("plugin.serialization") version libs.versions.kotlin.get()
 }
 
 android {
@@ -37,6 +39,11 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.paging.runtime)
+
+    // Ktor
+    implementation(libs.bundles.ktor)
     // Core
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
