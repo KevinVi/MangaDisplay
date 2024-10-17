@@ -14,7 +14,7 @@ class MangaRepostoryImpl @Inject constructor() : MangaRepository {
     override suspend fun getMangaByName(name: String): PopularItem {
 
         val response: HttpResponse =
-            client.get("https://api.mangadex.org/manga?title=$name&includes[]=cover_art&contentRating[]=safe")
+            client.get("https://api.mangadex.org/manga?title=$name&includes[]=cover_art&contentRating[]=safe&limit=40")
 
         val responseBody = response.bodyAsText()
         Log.d("TAG", "getMangaByName: $name")

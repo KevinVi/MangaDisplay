@@ -2,17 +2,19 @@ package com.kevinvi.popular.ui
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -23,6 +25,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.kevinvi.popular.mapper.PopularItemMapper
 import com.kevinvi.ui.Dimens
+import com.kevinvi.ui.Loader
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -37,7 +40,7 @@ fun PopulareScreen(
 
     when (lazyPagingItems.loadState.refresh) {
         is LoadState.Loading -> {
-            CircularProgressIndicator(modifier = Modifier.fillMaxSize())
+            Loader(true)
         }
 
         is LoadState.Error -> {
@@ -81,7 +84,7 @@ fun PopulareScreen(
                             item(span = {
                                 GridItemSpan(maxLineSpan)
                             }) {
-                                CircularProgressIndicator(modifier = Modifier.fillMaxSize())
+                                Loader(true)
                             }
                         }
 
@@ -92,6 +95,7 @@ fun PopulareScreen(
                                 Text("error")
                             }
                         }
+
                         else -> Unit
                     }
                 },
