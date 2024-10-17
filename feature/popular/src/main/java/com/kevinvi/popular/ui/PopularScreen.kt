@@ -2,16 +2,20 @@ package com.kevinvi.popular.ui
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
-import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -29,45 +33,26 @@ fun PopulareScreen(
     val viewModel: PopularViewModel = hiltViewModel()
     val lazyPagingItems = viewModel.popularState.collectAsLazyPagingItems()
     val state = lazyPagingItems.loadState
-    val listState = rememberLazyListState()
 
-    when {
 
-        state.refresh is LoadState.Loading && lazyPagingItems.itemCount == 0 -> {
-            //ShimmerHome()
+    when (lazyPagingItems.loadState.refresh) {
+        is LoadState.Loading -> {
+            CircularProgressIndicator(modifier = Modifier.fillMaxSize())
         }
 
-        state.refresh is LoadState.Loading && lazyPagingItems.itemCount == 0 -> {
-            Box(
-                modifier =
-                Modifier.statusBarsPadding()
-            ) {
-                // Loader(true)
-            }
-        }
-
-        state.refresh is LoadState.Error -> {
-            TODO()
-        }
-
-        state.append is LoadState.Loading -> {
-            Box(
-                modifier =
-                Modifier.statusBarsPadding()
-            ) {
-                //Loader(true)
-            }
-        }
-
-        state.append is LoadState.Error -> {
-            TODO()
+        is LoadState.Error -> {
+            Text(
+                text = "An error occurred. Please try again.",
+                modifier = Modifier.fillMaxSize(),
+                textAlign = TextAlign.Center
+            )
         }
 
         else -> {
 
-            LazyVerticalStaggeredGrid(
-                columns = StaggeredGridCells.Fixed(3),
-                verticalItemSpacing = Dimens.NORMAL_SPACING,
+
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(minSize = 140.dp),
                 reverseLayout = false,
                 horizontalArrangement = Arrangement.End,
                 contentPadding = PaddingValues(
@@ -78,19 +63,44 @@ fun PopulareScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .statusBarsPadding(),
-            ) {
-                items(count = lazyPagingItems.itemCount) { index ->
-                    lazyPagingItems.get(index = index)?.let { popular ->
+                content = {
+                    items(count = lazyPagingItems.itemCount) { index ->
+                        lazyPagingItems[index]?.let { popular ->
 
-                        val item = PopularItemMapper.mapToPopular(popular)
-                        PopularItem(
-                            item = item,
-                        )
+                            val item = PopularItemMapper.mapToPopular(popular)
+                            PopularItem(
+                                item = item,
+                            )
 
+                        }
                     }
-                }
-            }
 
+                    when (state.append) {
+
+                        is LoadState.Loading -> {
+                            item(span = {
+                                GridItemSpan(maxLineSpan)
+                            }) {
+                                CircularProgressIndicator(modifier = Modifier.fillMaxSize())
+                            }
+                        }
+
+                        is LoadState.Error -> {
+                            item(span = {
+                                GridItemSpan(maxLineSpan)
+                            }) {
+                                Text("error")
+                            }
+                        }
+                        else -> Unit
+                    }
+                },
+            )
         }
+
+
     }
 }
+
+
+
