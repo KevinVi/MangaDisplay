@@ -1,28 +1,21 @@
-package com.kevinvi.scan.data.repository.paging
+package com.kevinvi.popular.data.repository.paging
 
-import android.net.http.HttpException
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.kevinvi.data.room.KtorClient.client
-import com.kevinvi.scan.data.model.ScanData
-import com.kevinvi.scan.data.model.ScanItem
-import com.kevinvi.scan.data.repository.ScanRepository
-import com.kevinvi.scan.data.repository.ScanRepositoryImpl
-import io.ktor.client.request.get
-import io.ktor.client.statement.HttpResponse
-import io.ktor.client.statement.bodyAsText
+import com.kevinvi.popular.data.model.PopularData
+import com.kevinvi.popular.data.repository.PopularRepository
 import kotlinx.serialization.json.Json
 import java.io.IOException
 
-class PopularPaging(val scanRepository: ScanRepository): PagingSource<Int, ScanData>() {
+class PopularPaging(val popularRepository: PopularRepository): PagingSource<Int, PopularData>() {
 
     private val json = Json { ignoreUnknownKeys = true }
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ScanData> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PopularData> {
         return try {
             val currentPage = params.key ?: 0
 
             val offset = currentPage * 20
-            val test = scanRepository.getLastUpdateList(offset)
+            val test = popularRepository.getLastUpdateList(offset)
             test.data
 
             LoadResult.Page(
@@ -35,7 +28,7 @@ class PopularPaging(val scanRepository: ScanRepository): PagingSource<Int, ScanD
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ScanData>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, PopularData>): Int? {
         return state.anchorPosition
     }
 

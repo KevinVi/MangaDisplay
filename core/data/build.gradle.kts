@@ -2,6 +2,11 @@ plugins {
     alias(libs.plugins.mangadisplay.android.library)
     alias(libs.plugins.mangadisplay.android.library.compose)
     alias(libs.plugins.mangadisplay.android.hilt)
+
+    id("kotlin-parcelize")
+
+    kotlin("plugin.serialization") version libs.versions.kotlin.get()
+
 }
 
 android {
@@ -25,11 +30,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
@@ -37,6 +42,8 @@ dependencies {
 
     // AndroidX Core
     implementation(libs.androidx.core.ktx)
+    // Ktor
+    implementation(libs.bundles.ktor)
     // Tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit)
