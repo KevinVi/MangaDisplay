@@ -1,4 +1,4 @@
-# MangaDex Browser
+# MangaDisplay
 
 A simple Android application that uses the MangaDex API to display and search for mangas.
 
