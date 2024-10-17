@@ -1,9 +1,9 @@
-package com.kevinvi.popular.mapper
+package com.kevinvi.data.mapper
 
 import com.kevinvi.common.extensions.empty
-import com.kevinvi.popular.data.model.PopularData
-import com.kevinvi.popular.data.model.PopularRelationships
-import com.kevinvi.popular.ui.PopularItemUI
+import com.kevinvi.data.model.PopularData
+import com.kevinvi.data.model.PopularItemUI
+import com.kevinvi.data.model.PopularRelationships
 
 object PopularItemMapper {
 

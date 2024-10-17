@@ -2,8 +2,8 @@ package com.kevinvi.search.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kevinvi.popular.mapper.PopularItemMapper
-import com.kevinvi.popular.ui.PopularItemUI
+import com.kevinvi.data.mapper.PopularItemMapper
+import com.kevinvi.data.model.PopularItemUI
 import com.kevinvi.search.data.repository.MangaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

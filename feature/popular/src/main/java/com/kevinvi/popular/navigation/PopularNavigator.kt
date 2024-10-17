@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.kevinvi.popular.ui.PopulareScreen
+import com.kevinvi.popular.ui.PopularScreen
 
 const val POPULAR_ROUTE = "popular"
 
@@ -14,5 +14,5 @@ fun NavController.navigateToPopular(navOptions: NavOptions) {
 }
 
 fun NavGraphBuilder.addPopularRoute(navController: NavHostController) {
-    composable(POPULAR_ROUTE) { PopulareScreen(navController) }
+    composable(POPULAR_ROUTE) { PopularScreen(navController) }
 }

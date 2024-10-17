@@ -6,10 +6,10 @@ import androidx.annotation.RequiresApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.kevinvi.data.KtorClient.client
-import com.kevinvi.popular.data.model.PopularData
-import com.kevinvi.popular.data.model.PopularItem
+import com.kevinvi.data.model.PopularData
+import com.kevinvi.data.model.PopularItem
 import com.kevinvi.popular.data.repository.paging.PopularPaging
+import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
-class PopularRepositoryImpl @Inject constructor() : PopularRepository {
+class PopularRepositoryImpl @Inject constructor(val client: HttpClient) : PopularRepository {
     private val json = Json { ignoreUnknownKeys = true }
     private val url =
         "https://api.mangadex.org/manga?includes[]=cover_art&includes[]=artist&includes[]=author&contentRating[]=safe&hasAvailableChapters=true&availableTranslatedLanguage[]=fr&limit=20&offset="

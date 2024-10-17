@@ -1,4 +1,4 @@
-package com.kevinvi.popular.data.model
+package com.kevinvi.data.model
 
 import com.kevinvi.common.extensions.empty
 import kotlinx.serialization.Serializable
@@ -43,7 +43,7 @@ data class PopularAttributesImage(
 data class PopularRelationships(
     val id: String,
     val type: String? = null,
-    val related: String? = String.empty,
+    val related: String? = String.Companion.empty,
     val attributes: PopularAttributesImage? = null,
 )
 

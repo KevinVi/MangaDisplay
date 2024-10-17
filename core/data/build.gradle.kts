@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     // Ktor
     implementation(libs.bundles.ktor)
+    // Core
+    implementation(project(":core:common"))
     // Tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit)

@@ -1,6 +1,12 @@
 package com.kevinvi.data
 
 
+import android.content.Context
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.DefaultRequest
@@ -16,11 +22,13 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 
+@Module
+@InstallIn(SingletonComponent::class)
 object KtorClient {
 
-    //Configure the HttpCLient
-    @OptIn(ExperimentalSerializationApi::class)
-    var client = HttpClient(Android) {
+
+    @Provides
+    fun providesKtorHttpClient(@ApplicationContext context: Context) = HttpClient(Android) {
 
         // For Logging
         install(Logging) {
@@ -54,6 +62,5 @@ object KtorClient {
             //add this accept() for accept Json Body or Raw Json as Request Body
             accept(ContentType.Application.Json)
         }
-
     }
 }

@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kevinvi.common.extensions.takeIfNotNullOrBlank
+import com.kevinvi.data.model.PopularItemUI
 
 @Composable
 fun PopularItem(

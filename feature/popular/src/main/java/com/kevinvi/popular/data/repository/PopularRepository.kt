@@ -1,8 +1,8 @@
 package com.kevinvi.popular.data.repository
 
 import androidx.paging.PagingData
-import com.kevinvi.popular.data.model.PopularData
-import com.kevinvi.popular.data.model.PopularItem
+import com.kevinvi.data.model.PopularData
+import com.kevinvi.data.model.PopularItem
 import kotlinx.coroutines.flow.Flow
 
 interface PopularRepository {

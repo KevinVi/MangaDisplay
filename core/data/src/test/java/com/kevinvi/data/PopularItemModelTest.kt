@@ -1,11 +1,11 @@
-package com.kevinvi.popular
+package com.kevinvi.data
 
-import com.kevinvi.popular.data.model.PopularAttributes
-import com.kevinvi.popular.data.model.PopularAttributesImage
-import com.kevinvi.popular.data.model.PopularData
-import com.kevinvi.popular.data.model.PopularDescription
-import com.kevinvi.popular.data.model.PopularItem
-import com.kevinvi.popular.data.model.PopularRelationships
+import com.kevinvi.data.model.PopularAttributes
+import com.kevinvi.data.model.PopularAttributesImage
+import com.kevinvi.data.model.PopularData
+import com.kevinvi.data.model.PopularDescription
+import com.kevinvi.data.model.PopularItem
+import com.kevinvi.data.model.PopularRelationships
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

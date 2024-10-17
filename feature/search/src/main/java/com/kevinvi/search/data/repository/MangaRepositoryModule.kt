@@ -10,5 +10,5 @@ import dagger.hilt.components.SingletonComponent
 interface MangaRepositoryModule {
 
     @Binds
-    fun bindsMangaRepository(mangaRepositoryImpl: MangaRepostoryImpl): MangaRepository
+    fun bindsMangaRepository(mangaRepositoryImpl: MangaRepositoryImpl): MangaRepository
 }

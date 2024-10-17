@@ -1,15 +1,14 @@
 package com.kevinvi.search.data.repository
 
-import android.util.Log
-import com.kevinvi.data.KtorClient.client
-import com.kevinvi.popular.data.model.PopularItem
+import com.kevinvi.data.model.PopularItem
+import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
-class MangaRepostoryImpl @Inject constructor() : MangaRepository {
+class MangaRepositoryImpl @Inject constructor(val client: HttpClient) : MangaRepository {
     private val json = Json { ignoreUnknownKeys = true }
     override suspend fun getMangaByName(name: String): PopularItem {
 

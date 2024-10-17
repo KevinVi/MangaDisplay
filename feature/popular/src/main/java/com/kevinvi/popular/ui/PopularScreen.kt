@@ -2,19 +2,15 @@ package com.kevinvi.popular.ui
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -23,14 +19,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.kevinvi.popular.mapper.PopularItemMapper
+import com.kevinvi.data.mapper.PopularItemMapper
 import com.kevinvi.ui.Dimens
 import com.kevinvi.ui.Loader
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun PopulareScreen(
+fun PopularScreen(
     navController: NavHostController = rememberNavController(),
 ) {
     val viewModel: PopularViewModel = hiltViewModel()
@@ -52,8 +48,6 @@ fun PopulareScreen(
         }
 
         else -> {
-
-
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(minSize = 140.dp),
                 reverseLayout = false,
@@ -77,9 +71,7 @@ fun PopulareScreen(
 
                         }
                     }
-
                     when (state.append) {
-
                         is LoadState.Loading -> {
                             item(span = {
                                 GridItemSpan(maxLineSpan)

@@ -27,7 +27,7 @@ import androidx.compose.ui.layout.ContentScale.Companion.Crop
 import androidx.compose.ui.text.style.TextOverflow.Companion.Ellipsis
 import androidx.compose.ui.unit.dp
 import com.kevinvi.common.extensions.takeIfNotNullOrBlank
-import com.kevinvi.popular.ui.PopularItemUI
+import com.kevinvi.data.model.PopularItemUI
 import kotlin.let
 import kotlin.to
 

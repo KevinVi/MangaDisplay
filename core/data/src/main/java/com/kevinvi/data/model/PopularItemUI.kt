@@ -1,4 +1,4 @@
-package com.kevinvi.popular.ui
+package com.kevinvi.data.model
 
 import android.os.Parcelable
 import com.kevinvi.common.data.UiModel
