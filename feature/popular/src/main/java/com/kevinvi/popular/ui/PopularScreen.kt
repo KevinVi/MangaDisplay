@@ -13,11 +13,11 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.loader.content.Loader
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.kevinvi.popular.mapper.PopularItemMapper
 import com.kevinvi.ui.Dimens
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,7 +42,7 @@ fun PopulareScreen(
                 modifier =
                 Modifier.statusBarsPadding()
             ) {
-               // Loader(true)
+                // Loader(true)
             }
         }
 
@@ -82,9 +82,10 @@ fun PopulareScreen(
                 items(count = lazyPagingItems.itemCount) { index ->
                     lazyPagingItems.get(index = index)?.let { popular ->
 
-
-
-                        popular.attributes
+                        val item = PopularItemMapper.mapToPopular(popular)
+                        PopularItem(
+                            item = item,
+                        )
 
                     }
                 }

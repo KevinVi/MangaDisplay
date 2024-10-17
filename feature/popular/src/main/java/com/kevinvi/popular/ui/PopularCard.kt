@@ -1,6 +1,5 @@
 package com.kevinvi.popular.ui
 
-import android.widget.ProgressBar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,23 +20,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.kevinvi.common.extension.takeIfNotNullOrBlank
-import com.kevinvi.popular.data.model.PopularData
-import com.kevinvi.popular.data.model.PopularItem
-import com.kevinvi.ui.components.ProgressBarCustom
-import com.kevinvi.ui.model.FavItemUi
+import com.kevinvi.common.extensions.takeIfNotNullOrBlank
 
 @Composable
 fun PopularItem(
-
-    item: PopularData,
-    onItemClick: (PopularData) -> Unit,
-    displayProgress: Boolean = true,
+    item: PopularItemUI,
+    //onItemClick: (PopularItemUI) -> Unit,
 ) {
     var state by remember {
         mutableStateOf(false)
@@ -49,7 +41,7 @@ fun PopularItem(
     ) {
 
         Card(
-            onClick = { onItemClick(item) },
+            //onClick = { onItemClick(item) },
             elevation = CardDefaults.cardElevation(),
             colors = CardDefaults.cardColors(Color.Transparent)
         )
@@ -57,7 +49,7 @@ fun PopularItem(
 
             Column {
                 Box(modifier = Modifier.fillMaxWidth()) {
-                    item.attributes.i.takeIfNotNullOrBlank()?.let {
+                    item.image.takeIfNotNullOrBlank()?.let {
                         AsyncImage(
                             model = it,
                             contentDescription = null,
@@ -98,14 +90,6 @@ fun PopularItem(
 
             }
 
-        }
-        if (displayProgress) {
-            if (item.progression > 0 && item.lastEntry > 0) {
-                val progress = item.progression * 100 / item.lastEntry
-                ProgressBarCustom(progress)
-            } else {
-                ProgressBarCustom(0)
-            }
         }
     }
 }
