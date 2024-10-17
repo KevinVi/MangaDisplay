@@ -34,8 +34,10 @@ import kotlin.to
 @androidx.compose.runtime.Composable
 fun MangaSearchResult(
     item: PopularItemUI,
+    onItemClick: (PopularItemUI) -> Unit,
 ) {
     Card(
+        onClick = { onItemClick(item) },
         elevation = cardElevation(), modifier = Modifier
             .padding(10.dp)
             .height(225.dp)
@@ -100,5 +102,6 @@ fun ScanItemComposable() {
             lastChapter = null,
             isFinished = false,
         ),
+        onItemClick = {}
     )
 }

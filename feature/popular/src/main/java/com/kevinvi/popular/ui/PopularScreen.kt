@@ -20,8 +20,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.kevinvi.data.mapper.PopularItemMapper
+import com.kevinvi.popular.navigation.navigateToDetails
 import com.kevinvi.ui.Dimens
-import com.kevinvi.ui.Loader
+import com.kevinvi.ui.components.Loader
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -67,6 +68,9 @@ fun PopularScreen(
                             val item = PopularItemMapper.mapToPopular(popular)
                             PopularItem(
                                 item = item,
+                                onItemClick = {
+                                    navController.navigateToDetails(item)
+                                }
                             )
 
                         }

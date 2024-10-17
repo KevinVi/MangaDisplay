@@ -35,7 +35,15 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
+    // Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
+    // Core
+    implementation(project(":core:data"))
+    implementation(project(":core:common"))
 
     // Material 3
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.compose.animation.graphics)
 }

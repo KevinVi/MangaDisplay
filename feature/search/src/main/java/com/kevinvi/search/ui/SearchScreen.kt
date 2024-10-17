@@ -41,8 +41,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.kevinvi.search.navigation.navigateToDetails
 import com.kevinvi.ui.Dimens
-import com.kevinvi.ui.Loader
+import com.kevinvi.ui.components.Loader
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -128,6 +129,9 @@ fun SearchScreen(
                             items(search.list) { itemUi ->
                                 MangaSearchResult(
                                     itemUi,
+                                    onItemClick = {
+                                        navController.navigateToDetails(itemUi)
+                                    }
                                 )
                             }
                         }

@@ -30,7 +30,7 @@ import com.kevinvi.data.model.PopularItemUI
 @Composable
 fun PopularItem(
     item: PopularItemUI,
-    //onItemClick: (PopularItemUI) -> Unit,
+    onItemClick: (PopularItemUI) -> Unit,
 ) {
     var state by remember {
         mutableStateOf(false)
@@ -42,7 +42,7 @@ fun PopularItem(
     ) {
 
         Card(
-            //onClick = { onItemClick(item) },
+            onClick = { onItemClick(item) },
             elevation = CardDefaults.cardElevation(),
             colors = CardDefaults.cardColors(Color.Transparent)
         )
