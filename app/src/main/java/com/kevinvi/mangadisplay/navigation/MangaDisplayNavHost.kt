@@ -10,10 +10,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.kevinvi.common.motion.MaterialMotion.tweenScreen
 import com.kevinvi.popular.navigation.addPopularRoute
-import fr.npo.remotecontrolbluetooth.feature.feature2.ui.navigation.addFeature2Route
+import com.kevinvi.search.navigation.addSearchRoute
 
 @Composable
-fun RemoteControlBluetoothNavHost(
+fun MangaDisplayNavHost(
     navController: NavHostController,
     startScreen: BottomNavigationScreen,
     innerPadding: PaddingValues,
@@ -28,6 +28,6 @@ fun RemoteControlBluetoothNavHost(
         popExitTransition = { fadeOut(animationSpec = tweenScreen()) },
     ) {
         addPopularRoute(navController)
-        addFeature2Route(navController)
+        addSearchRoute(navController)
     }
 }

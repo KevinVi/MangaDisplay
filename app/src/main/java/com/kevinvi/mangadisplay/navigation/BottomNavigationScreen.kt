@@ -1,32 +1,29 @@
 package com.kevinvi.mangadisplay.navigation
 
-import android.graphics.drawable.Icon
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons.Rounded
 import androidx.compose.material.icons.rounded.BugReport
 import androidx.compose.material.icons.rounded.Home
-import com.kevinvi.popular.navigation.FEATURE1_ROUTE
 import com.kevinvi.popular.navigation.POPULAR_ROUTE
-import fr.npo.remotecontrolbluetooth.core.ui.Icon.ImageVectorIcon
-import fr.npo.remotecontrolbluetooth.feature.feature1.R.string.feature_feature1_label
-import fr.npo.remotecontrolbluetooth.feature.feature2.R.string.feature_feature2_label
-import fr.npo.remotecontrolbluetooth.feature.feature2.ui.navigation.FEATURE2_ROUTE
+import com.kevinvi.search.navigation.SEARCH_ROUTE
+import com.kevinvi.ui.Icon
+import com.kevinvi.ui.Icon.ImageVectorIcon
 
 sealed class BottomNavigationScreen(
     val route: String,
-    @StringRes val nameResourceId: Int,
+    val nameResourceId: String,
     val selectedIcon: Icon,
     val unselectedIcon: Icon = selectedIcon,
 ) {
     data object Popular : BottomNavigationScreen(
         route = POPULAR_ROUTE,
-        nameResourceId = feature_feature1_label,
+        nameResourceId = "Popular",
         selectedIcon = ImageVectorIcon(Rounded.Home),
     )
 
     data object Search : BottomNavigationScreen(
-        route = FEATURE2_ROUTE,
-        nameResourceId = feature_feature2_label,
+        route = SEARCH_ROUTE,
+        nameResourceId = "Search",
         selectedIcon = ImageVectorIcon(Rounded.BugReport),
     )
 

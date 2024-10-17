@@ -8,20 +8,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import com.kevinvi.mangadisplay.navigation.BottomNavigationScreen.Feature2
 import com.kevinvi.mangadisplay.navigation.BottomNavigationScreen.Popular
-import com.kevinvi.popular.navigation.navigateToFeature1
+import com.kevinvi.mangadisplay.navigation.BottomNavigationScreen.Search
 import com.kevinvi.popular.navigation.navigateToPopular
-import fr.npo.remotecontrolbluetooth.feature.feature2.ui.navigation.navigateToFeature2
+import com.kevinvi.search.navigation.navigateToSearch
 
 @Composable
-fun rememberTemplateNavigator(
+fun rememberNavigator(
     navController: NavHostController = rememberNavController(),
 ) = remember(navController) {
-    TemplateNavigator(navController)
+    MangaDisplayNavigator(navController)
 }
 
-class TemplateNavigator(
+class MangaDisplayNavigator(
     val navController: NavHostController,
 ) {
     val currentDestination: NavDestination?
@@ -30,7 +29,7 @@ class TemplateNavigator(
     val currentScreen: BottomNavigationScreen
         @Composable get() = when (currentDestination?.route) {
             Popular.route -> Popular
-            Feature2.route -> Feature2
+            Search.route -> Search
             else -> startScreen
         }
 
@@ -50,7 +49,7 @@ class TemplateNavigator(
 
         when (screen) {
             Popular -> navController.navigateToPopular(navOptions)
-            Feature2 -> navController.navigateToFeature2(navOptions)
+            Search -> navController.navigateToSearch(navOptions)
         }
     }
 

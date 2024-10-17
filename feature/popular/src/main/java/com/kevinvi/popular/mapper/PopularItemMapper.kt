@@ -7,6 +7,7 @@ import com.kevinvi.popular.ui.PopularItemUI
 
 object PopularItemMapper {
 
+
     fun mapToPopular(popularItem: PopularData) = PopularItemUI(
         id = popularItem.id,
         title = popularItem.attributes?.title?.toString(),

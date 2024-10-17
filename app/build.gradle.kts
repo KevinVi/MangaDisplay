@@ -50,4 +50,5 @@ dependencies {
 
     // Feature
     implementation(project(":feature:popular"))
+    implementation(project(":feature:search"))
 }

@@ -10,26 +10,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.kevinvi.mangadisplay.navigation.BottomNavigationScreen
-import com.kevinvi.mangadisplay.navigation.TemplateNavigator
+import com.kevinvi.mangadisplay.navigation.MangaDisplayNavigator
 import com.kevinvi.mangadisplay.navigation.isTopLevelScreenInHierarchy
-import com.kevinvi.mangadisplay.navigation.rememberTemplateNavigator
-import fr.npo.remotecontrolbluetooth.ui.theme.AppTheme
+import com.kevinvi.mangadisplay.navigation.rememberNavigator
+import com.kevinvi.ui.Icon.DrawableResIcon
+import com.kevinvi.ui.Icon.ImageVectorIcon
 import kotlin.collections.forEach
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun RemoteControlBluetoothApp(
-    content: @Composable (PaddingValues, TemplateNavigator) -> Unit,
+fun MangaDisplayApp(
+    content: @Composable (PaddingValues, MangaDisplayNavigator) -> Unit,
 ) {
-    val navigator = rememberTemplateNavigator()
+    val navigator = rememberNavigator()
 
-    val navBackStackEntry by TemplateNavigator.navController.currentBackStackEntryAsState()
+    val navBackStackEntry by navigator.navController.currentBackStackEntryAsState()
 
     Scaffold(
         content = { scaffoldPadding ->
@@ -37,10 +35,10 @@ fun RemoteControlBluetoothApp(
         },
         bottomBar = {
             BottomNavigationBar(
-                items = TemplateNavigator.Companion.destinations,
-                currentDestination = NavBackStackEntry.destination,
+                items = MangaDisplayNavigator.destinations,
+                currentDestination = navBackStackEntry?.destination,
             ) { screen ->
-                TemplateNavigator.navigateToScreen(screen)
+                navigator.navigateToScreen(screen)
             }
         },
     )
@@ -58,22 +56,22 @@ fun BottomNavigationBar(
             NavigationBarItem(
                 icon = {
                     val icon = when {
-                        selected -> BottomNavigationScreen.selectedIcon
-                        else -> BottomNavigationScreen.unselectedIcon
+                        selected -> screen.selectedIcon
+                        else -> screen.unselectedIcon
                     }
                     when (icon) {
-                        is fr.npo.remotecontrolbluetooth.core.ui.Icon.ImageVectorIcon -> Icon(
-                            imageVector = fr.npo.remotecontrolbluetooth.core.ui.Icon.ImageVectorIcon.imageVector,
-                            contentDescription = stringResource(BottomNavigationScreen.nameResourceId),
+                        is ImageVectorIcon -> Icon(
+                            imageVector = icon.imageVector,
+                            contentDescription = (screen.nameResourceId),
                         )
 
-                        is fr.npo.remotecontrolbluetooth.core.ui.Icon.DrawableResIcon -> Icon(
-                            painter = painterResource(fr.npo.remotecontrolbluetooth.core.ui.Icon.DrawableResIcon.id),
-                            contentDescription = stringResource(BottomNavigationScreen.nameResourceId),
+                        is DrawableResIcon -> Icon(
+                            painter = painterResource(icon.id),
+                            contentDescription = (screen.nameResourceId),
                         )
                     }
                 },
-                label = { Text(stringResource(BottomNavigationScreen.nameResourceId)) },
+                label = { Text((screen.nameResourceId)) },
                 selected = selected,
                 onClick = { onClick(screen) },
             )
@@ -81,10 +79,3 @@ fun BottomNavigationBar(
     }
 }
 
-@PreviewLightDark
-@Composable
-fun DefaultPreview() {
-    fr.npo.remotecontrolbluetooth.ui.theme.AppTheme {
-        RemoteControlBluetoothApp { _, _ -> }
-    }
-}

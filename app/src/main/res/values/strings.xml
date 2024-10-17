@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MangaDisplay</string>
+    <string name="feature_popular_label">MangaDisplay</string>
+    <string name="feature_search_label">MangaDisplay</string>
 </resources>

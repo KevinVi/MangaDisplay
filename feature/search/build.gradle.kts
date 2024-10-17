@@ -1,6 +1,11 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.mangadisplay.android.feature)
+    alias(libs.plugins.mangadisplay.android.feature.compose)
+    alias(libs.plugins.mangadisplay.android.hilt)
+
+    id("kotlin-parcelize")
+
+    kotlin("plugin.serialization") version libs.versions.kotlin.get()
 }
 
 android {
@@ -24,20 +29,34 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.paging.runtime)
+
+    // Ktor
+    implementation(libs.bundles.ktor)
+
+    // Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
+
+    // Core
+    implementation(project(":core:common"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:data"))
+    implementation(project(":feature:popular"))
+
+    // Tests
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.junit)
 }
