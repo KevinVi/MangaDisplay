@@ -24,7 +24,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.kevinvi.common.extensions.takeIfNotNullOrBlank
 import com.kevinvi.data.model.PopularItemUI
