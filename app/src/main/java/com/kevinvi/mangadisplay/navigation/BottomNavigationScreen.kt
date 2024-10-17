@@ -1,8 +1,6 @@
 package com.kevinvi.mangadisplay.navigation
 
-import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons.Rounded
-import androidx.compose.material.icons.rounded.BugReport
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Search
 import com.kevinvi.popular.navigation.POPULAR_ROUTE

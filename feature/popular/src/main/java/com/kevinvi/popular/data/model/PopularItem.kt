@@ -11,13 +11,6 @@ data class PopularItem(
 )
 
 @Serializable
-data class PopularItemSingle(
-    val result: String? = String.empty,
-    val response: String? = String.empty,
-    val data: PopularData? = PopularData(id = String.empty),
-)
-
-@Serializable
 data class PopularData(
     val id: String,
     val attributes: PopularAttributes? = null,

@@ -13,6 +13,7 @@ import androidx.compose.material3.CardDefaults.cardElevation
 import androidx.compose.material3.Text
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.BottomStart
@@ -22,6 +23,7 @@ import androidx.compose.ui.graphics.Brush.Companion.linearGradient
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.layout.ContentScale.Companion.Crop
 import androidx.compose.ui.text.style.TextOverflow.Companion.Ellipsis
 import androidx.compose.ui.unit.dp
 import com.kevinvi.common.extensions.takeIfNotNullOrBlank
@@ -32,34 +34,26 @@ import kotlin.to
 @androidx.compose.runtime.Composable
 fun MangaSearchResult(
     item: PopularItemUI,
-
-    ) {
-
+) {
     Card(
-        elevation = cardElevation(),
-        modifier = Modifier
+        elevation = cardElevation(), modifier = Modifier
             .padding(10.dp)
             .height(225.dp)
             .width(150.dp)
-    )
-    {
-
-
+    ) {
         Column {
             var state by remember<MutableState<Boolean>> {
-                androidx.compose.runtime.mutableStateOf(false)
+                mutableStateOf<Boolean>(false)
             }
             Box(modifier = Modifier.fillMaxWidth()) {
                 item.image.takeIfNotNullOrBlank()?.let {
-                    coil.compose.AsyncImage(
-                        model = it,
+                    coil.compose.AsyncImage(model = it,
                         contentDescription = null,
-                        contentScale = androidx.compose.ui.layout.ContentScale.Companion.Crop,
+                        contentScale = Crop,
                         modifier = Modifier.aspectRatio(2f / 3f),
                         onSuccess = {
                             state = true
                         }
-
                     )
                 }
 
@@ -75,22 +69,19 @@ fun MangaSearchResult(
                                         0.0f to Transparent,
                                         1.0f to Color.Black.copy(0.6f),
                                         start = Offset(0.0f, 10.0f),
-                                        end = androidx.compose.ui.geometry.Offset(0.0f, 100.0f)
+                                        end = Offset(0.0f, 100.0f)
                                     )
                                 )
                                 .padding(10.dp),
                             overflow = Ellipsis,
                             maxLines = 3,
                             color = White,
-
-                            )
+                        )
                     }
                 }
             }
-
         }
     }
-
 }
 
 @androidx.compose.ui.tooling.preview.Preview

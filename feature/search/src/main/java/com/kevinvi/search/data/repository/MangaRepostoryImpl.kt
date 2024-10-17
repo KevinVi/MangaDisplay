@@ -17,7 +17,6 @@ class MangaRepostoryImpl @Inject constructor() : MangaRepository {
             client.get("https://api.mangadex.org/manga?title=$name&includes[]=cover_art&contentRating[]=safe&limit=40")
 
         val responseBody = response.bodyAsText()
-        Log.d("TAG", "getMangaByName: $name")
         return json.decodeFromString<PopularItem>(responseBody)
     }
 }
