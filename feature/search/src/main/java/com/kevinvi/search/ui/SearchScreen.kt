@@ -54,7 +54,7 @@ fun SearchScreen(
 
     val viewModel: SearchViewModel = hiltViewModel()
     var text by rememberSaveable { mutableStateOf("") }
-    var searchLauched by rememberSaveable { mutableStateOf(false) }
+    var searchLaunched by rememberSaveable { mutableStateOf(false) }
     val search by viewModel.stateData.collectAsStateWithLifecycle()
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
@@ -80,7 +80,7 @@ fun SearchScreen(
                         },
                         onSearch = {
                             expanded = false
-                            searchLauched = true
+                            searchLaunched = true
                             viewModel.search(text)
                             focusManager.clearFocus()
                             keyboardController?.hide()
@@ -108,8 +108,8 @@ fun SearchScreen(
                 onExpandedChange = { expanded = it },
             ) {}
 
-            if (searchLauched) {
-                if (search.isMangaLoading && searchLauched) {
+            if (searchLaunched) {
+                if (search.isMangaLoading && searchLaunched) {
                     Loader(true)
                 } else {
                     Loader(false)
@@ -140,7 +140,7 @@ fun SearchScreen(
 
             } else {
                 Text(
-                    text = "Recherche ici vos mangas et animes préférer afin d'être toujours à jour dans sur vos favoris ",
+                    text = "Recherche ici vos mangas et animés préférés  ",
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()
