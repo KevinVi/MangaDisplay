@@ -1,6 +1,7 @@
 package com.kevinvi.search.ui
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,6 +42,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.kevinvi.common.extensions.empty
 import com.kevinvi.search.navigation.navigateToDetails
 import com.kevinvi.ui.Dimens
 import com.kevinvi.ui.components.Loader
@@ -53,7 +55,7 @@ fun SearchScreen(
 ) {
 
     val viewModel: SearchViewModel = hiltViewModel()
-    var text by rememberSaveable { mutableStateOf("") }
+    var text by rememberSaveable { mutableStateOf(String.empty) }
     var searchLaunched by rememberSaveable { mutableStateOf(false) }
     val search by viewModel.stateData.collectAsStateWithLifecycle()
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -95,7 +97,7 @@ fun SearchScreen(
                             Icon(
                                 modifier = Modifier.clickable {
                                     if (text.isNotEmpty()) {
-                                        text = ""
+                                        text = String.empty
                                     }
                                 },
                                 imageVector = Icons.Default.Close,
@@ -109,33 +111,45 @@ fun SearchScreen(
             ) {}
 
             if (searchLaunched) {
-                if (search.isMangaLoading && searchLaunched) {
+                if (search.isMangaLoading) {
                     Loader(true)
                 } else {
-                    Loader(false)
-                    LazyVerticalGrid(
-                        columns = GridCells.Adaptive(minSize = 140.dp),
-                        reverseLayout = false,
-                        horizontalArrangement = Arrangement.End,
-                        contentPadding = PaddingValues(
-                            start = Dimens.BIG_SPACING,
-                            end = Dimens.BIG_SPACING,
-                            bottom = Dimens.BIG_SPACING,
-                        ),
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .statusBarsPadding(),
-                        content = {
-                            items(search.list) { itemUi ->
-                                MangaSearchResult(
-                                    itemUi,
-                                    onItemClick = {
-                                        navController.navigateToDetails(itemUi)
-                                    }
-                                )
+                    Log.d("TAG", "SearchScreen: ")
+                    if (search.list.isEmpty()) {
+                        Text(
+                            text = "Aucun manga trouvé ",
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .padding(start = 30.dp, end = 30.dp)
+                                .wrapContentHeight()
+                        )
+                    } else {
+                        LazyVerticalGrid(
+                            columns = GridCells.Adaptive(minSize = 140.dp),
+                            reverseLayout = false,
+                            horizontalArrangement = Arrangement.End,
+                            contentPadding = PaddingValues(
+                                start = Dimens.BIG_SPACING,
+                                end = Dimens.BIG_SPACING,
+                                bottom = Dimens.BIG_SPACING,
+                            ),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .statusBarsPadding(),
+                            content = {
+                                items(search.list) { itemUi ->
+                                    MangaSearchResult(
+                                        itemUi,
+                                        onItemClick = {
+                                            navController.navigateToDetails(itemUi)
+                                        }
+                                    )
+                                }
                             }
-                        }
-                    )
+                        )
+                    }
                 }
 
             } else {

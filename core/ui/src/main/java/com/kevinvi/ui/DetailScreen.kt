@@ -76,9 +76,7 @@ fun DetailScreen(
                 }
             },
             navigationIcon = {
-                IconButton(onClick = onBackClick.also {
-                    //viewModel.saveProgression(itemData.item.id, sliderPosition.toInt())
-                }) {
+                IconButton(onClick = onBackClick) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
                         contentDescription = null,
